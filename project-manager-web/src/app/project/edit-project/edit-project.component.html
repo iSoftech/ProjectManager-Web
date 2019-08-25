@@ -1,0 +1,89 @@
+<br/>
+<div class="container-fluid">
+    <h3 style="padding-left: 10px;">Edit Project</h3>
+    <form *ngIf="editProjectForm" [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+        <div class="hidden">
+            <input type="hidden" class="form-control" id="projectId" formControlName="projectId"/>
+        </div>
+        <table border="0" cellspacing="0" cellpadding="10" style="width: 60%">
+          <thead>
+            <th width="20%"></th>
+            <th width="10%"></th>
+            <th width="70%"></th>
+          </thead>
+          <tbody>
+            <tr class="form-group">
+                <td>
+                    <label>Project</label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="text" class="form-control" id="projectName" formControlName="projectName" autofocus/>
+                </td>
+            </tr>
+            <tr class="form-group">
+                <td>
+                    <label>Priority</label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="range" class="form-control slider" min="0" max="30" id="priority" formControlName="priority" [(ngModel)]="rangeValue" title="{{rangeValue}}" />
+                </td>
+            </tr>
+            <tr class="form-group">
+                <td>
+                    <label>Manager</label>
+                </td>
+                <td></td>
+                <td>
+                    <div formGroupName="user" novalidate>
+                        <div class="hidden">
+                            <input type="hidden" class="form-control" id="userId" formControlName="userId"/>
+                        </div>
+                        <input type="text" class="form-control" id="employeeId" formControlName="employeeId"/>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="checkbox" id="toggleDateRowsId" checked="true" onclick="toggleDateRows()"/>&nbsp;<label>Set Start and End Date</label>
+                </td>
+            </tr>
+            <tr class="form-group" id="startDateRowId">
+                <td>
+                    <label>Start Date</label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="date" class="form-control" id="startDate" formControlName="startDate"/>
+                </td>
+            </tr>
+            <tr class="form-group" id="endDateRowId">
+                <td>
+                    <label>End Date</label>
+                </td>
+                <td></td>
+                <td>
+                    <input type="date" class="form-control" id="endDate" formControlName="endDate"/>
+                </td>
+            </tr>
+          </tbody>            
+        </table>
+        <br>
+        <div class="text-center">
+        <table border="0" cellspacing="0" cellpading="10">
+            <tr>
+                <td width="45%">
+                    <button type="submit" [disabled]="!editProjectForm.valid" class="btn btn-success" style="width: 160px; cursor: pointer;">Update Project</button>
+                </td>
+                <td width="10%"></td>
+                <td width="45%">
+                    <button type="button" class="btn btn-primary" style="width: 120px; cursor: pointer;" (click)="cancelEdit()">Cancel</button>
+                </td>
+            </tr>
+        </table>
+      </div>
+    </form>
+</div>
